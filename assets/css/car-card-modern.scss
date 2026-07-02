@@ -1,0 +1,90 @@
+// Modern restyle of the vehicle card. Overrides .car (defined in app.scss)
+// after Bulma loads. No markup structure removed — every existing
+// @summary/@car field, the map, icons, table rows, and action button
+// keep working; this only changes how they look.
+
+.car.card {
+  --state-color: #{$grey};
+  background: linear-gradient(180deg, #191d22, #14171b);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 8px 24px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: var(--state-color);
+    z-index: 2;
+  }
+
+  &[data-state="online"]     { --state-color: #3ecf8e; }
+  &[data-state="charging"]   { --state-color: #3ecf8e; }
+  &[data-state="driving"]    { --state-color: #4fa8ff; }
+  &[data-state="asleep"]     { --state-color: #b39ddb; }
+  &[data-state="suspended"]  { --state-color: #6b7280; }
+  &[data-state="offline"]    { --state-color: #6b7280; }
+  &[data-state="updating"]   { --state-color: #e5484d; }
+
+  .card-image .map {
+    border-radius: 16px 16px 0 0;
+    filter: saturate(0.85) brightness(0.9);
+  }
+
+  .card-content {
+    padding: 1.1rem 1.2rem;
+
+    .media .title {
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .media .subtitle {
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .icons span[data-tooltip] {
+      opacity: 0.85;
+      transition: opacity 0.15s ease;
+
+      &:hover { opacity: 1; }
+    }
+
+    // Turn the plain Bulma table rows into modern label/value tiles
+    .table {
+      border-collapse: separate;
+      border-spacing: 0 2px;
+
+      tbody tr {
+        td:first-of-type {
+          color: rgba(255, 255, 255, 0.5);
+          font-size: 0.72rem;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          font-weight: 600;
+          padding-top: 0.35em;
+        }
+
+        td:last-of-type {
+          font-variant-numeric: tabular-nums;
+          font-weight: 600;
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  @include mx.tablet {
+    .card-image .map {
+      border-radius: 16px 0 0 16px;
+    }
+  }
+
+  a.button {
+    border-radius: 10px;
+    font-weight: 600;
+  }
+}
