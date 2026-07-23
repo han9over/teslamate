@@ -119,5 +119,3 @@ Key Requirements:
 ## Credits
 
 - Initial Author: Adrian Kumpf
-- List of Contributors:
-- [![TeslaMate Contributors](https://contrib.rocks/image?repo=teslamate-org/teslamate)](https://github.com/teslamate-org/teslamate/graphs/contributors)
